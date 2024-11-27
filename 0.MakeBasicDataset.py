@@ -61,14 +61,16 @@ class NewsScraper:
             if link_tag:
                 href = link_tag['href']
                 title = link_tag.get('title', '').replace('[视频]', '').strip()
+                if (title in ["国际联播快讯", "国内联播快讯"] or
+                    title.startswith("二十四节气") or
+                    title.startswith("中国传统节日")):
+                    continue
+                print(f"{idx+1}. {title}")
                 if not href.startswith('http'):
                     href = "https:" + href
 
                 # 打开新闻链接
                 self.driver.get(href)
-                WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.TAG_NAME, "video"))
-                )
                 new_soup = BeautifulSoup(self.driver.page_source, 'html.parser')
 
                 # 提取新闻文本内容
