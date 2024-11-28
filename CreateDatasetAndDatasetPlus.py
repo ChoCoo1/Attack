@@ -89,7 +89,7 @@ def save_to_txt_improved(students_data, file_name):
 # 生成50个txt文件到Dataset和Dataset改进版文件夹
 def generate_multiple_txt_files(num_files=50):
     dataset_dir = './Dataset'
-    improved_dir = './Dataset_plus'
+    improved_dir = './DatasetPlus'
 
     # 如果文件夹不存在则创建
     if not os.path.exists(dataset_dir):
